@@ -1,67 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { AptosClient } from 'aptos';
+import React, { useEffect, useState } from 'react';
+import { AptosWalletAdapterProvider, useWallet } from '@aptos-labs/wallet-adapter-react';
+import { WalletSelector } from '@aptos-labs/wallet-adapter-ant-design';
+import { Col, Row } from 'antd';
+import '@aptos-labs/wallet-adapter-ant-design/dist/index.css';
 
-// Initialize the Aptos Client for network interaction
-const client = new AptosClient('https://fullnode.devnet.aptoslabs.com'); // Aptos devnet URL
-
-const CHAIN_NAME = "aptos"; // Set your chain name appropriately
 
 const ConnectWallet = () => {
-  const [account, setAccount] = useState(null); // Stores connected account address
-  const [isConnected, setIsConnected] = useState(false); // Tracks connection status
-  const [errorMessage, setErrorMessage] = useState(''); // Error message state
-  const [network, setNetwork] = useState('Devnet'); // Tracks selected network
+  const { account, connected, disconnect, error } = useWallet();
+  const [network, setNetwork] = useState('Testnet');
 
-  // Function to connect the Welldone wallet (via window.dapp)
-  const connectWallet = async () => {
-    try {
-      // Check if the Welldone wallet (window.dapp) is available
-      if (typeof window.dapp === 'undefined') {
-        throw new Error('Welldone Wallet (window.dapp) is not installed');
-      }
-
-      // Request accounts from the wallet
-      const accounts = await window.dapp.request(CHAIN_NAME, { method: "dapp:accounts" });
-      if (accounts && accounts.length > 0) {
-        setAccount(accounts[0]); // Get the first account
-        setIsConnected(true);
-        setErrorMessage(''); // Clear error message on success
-      } else {
-        setErrorMessage('No accounts found');
-      }
-    } catch (error) {
-      console.error('Error connecting to Welldone Wallet:', error);
-      setErrorMessage(error.message || 'Failed to connect to Welldone Wallet');
-    }
-  };
-
-  // Function to check if the wallet is already connected
-  const checkIfConnected = async () => {
-    try {
-      // Check if Welldone wallet is injected via window.dapp
-      if (typeof window.dapp !== 'undefined') {
-        const accounts = await window.dapp.request(Aptos, { method: "dapp:accounts" });
-        if (accounts && accounts.length > 0) {
-          setAccount(accounts[0]); // Get the first account
-          setIsConnected(true);
-        }
-      } else {
-        setErrorMessage('Welldone Wallet (window.dapp) is not installed');
-      }
-    } catch (error) {
-      console.log('Wallet not connected.');
-    }
-  };
-
-  // Run on component mount to check if the wallet is connected
   useEffect(() => {
-    const waitForWallet = async () => {
-      // Delay to ensure wallet injection
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      checkIfConnected();
-    };
-    waitForWallet();
-  }, []);
+    if (error) {
+      console.error('Wallet connection error:', error);
+    }
+  }, [error]);
 
   return (
     <div className="insert-x-0 top-8 w-full">
@@ -82,23 +34,21 @@ const ConnectWallet = () => {
               </li>
               <li>
                 <div>
-                  {!isConnected ? (
-                    <button
-                      onClick={connectWallet}
-                      className="font-bold sm:text-2xl brightness-120 text-white"
-                    >
-                      Connect Wallet
-                    </button>
+                  {!connected ? (
+                    <WalletSelector />
                   ) : (
                     <div>
-                      <p>Connected account: {account}</p>
+                      <p>Connected account: {account?.address}</p>
+                      <button onClick={disconnect} className="text-red-500">
+                        Disconnect
+                      </button>
                     </div>
                   )}
                 </div>
               </li>
-              {errorMessage && (
+              {error && (
                 <li>
-                  <p className="text-red-500">{errorMessage}</p>
+                  <p className="text-red-500">{error.message}</p>
                 </li>
               )}
             </ul>
@@ -109,4 +59,13 @@ const ConnectWallet = () => {
   );
 };
 
-export default ConnectWallet;
+// Wrap the ConnectWallet component with the AptosWalletAdapterProvider
+const App = () => {
+  return (
+    <AptosWalletAdapterProvider>
+      <ConnectWallet />
+    </AptosWalletAdapterProvider>
+  );
+};
+
+export default App;
