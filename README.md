@@ -24,3 +24,6 @@
 - A crypto wallet (e.g., MetaMask, if supported)
 - Blockchain node access (specify if using a testnet/mainnet)
 
+### Deployment
+- contract-link:https://explorer.aptoslabs.com/txn/0x08465edc0724ba5a7e1a2ba9dc4b492672a331f76aaa19d48c0ae78bbd0221db?network=devnet
+-contract-adress: 0x08465edc0724ba5a7e1a2ba9dc4b492672a331f76aaa19d48c0ae78bbd0221db
