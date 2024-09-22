@@ -1,0 +1,60 @@
+---
+compiled_package_info:
+  package_name: MessageBoard
+  address_alias_instantiation:
+    Extensions: "0000000000000000000000000000000000000000000000000000000000000001"
+    addrx: 75dc334abcc01d7bef7c4a3dbe35675656b129ad26356f550e097460c86d51ae
+    aptos_framework: "0000000000000000000000000000000000000000000000000000000000000001"
+    aptos_fungible_asset: 000000000000000000000000000000000000000000000000000000000000000a
+    aptos_std: "0000000000000000000000000000000000000000000000000000000000000001"
+    aptos_token: "0000000000000000000000000000000000000000000000000000000000000003"
+    core_resources: 000000000000000000000000000000000000000000000000000000000a550c18
+    eword.move: b495c8704db5aadb2c7001bcce91be800b639099fe8531619c1e966d53eb47c2
+    std: "0000000000000000000000000000000000000000000000000000000000000001"
+    vm: "0000000000000000000000000000000000000000000000000000000000000000"
+    vm_reserved: "0000000000000000000000000000000000000000000000000000000000000000"
+  source_digest: B338C484950EB34543229F15D4D5D36D7B4FB5696A398AD040BB7CA11C952D5C
+  build_flags:
+    dev_mode: false
+    test_mode: false
+    override_std: ~
+    generate_docs: false
+    generate_abis: false
+    generate_move_model: true
+    full_model_generation: false
+    install_dir: ~
+    force_recompilation: false
+    additional_named_addresses:
+      eword.move: b495c8704db5aadb2c7001bcce91be800b639099fe8531619c1e966d53eb47c2
+    architecture: ~
+    fetch_deps_only: false
+    skip_fetch_latest_git_deps: false
+    compiler_config:
+      bytecode_version: 6
+      known_attributes:
+        - bytecode_instruction
+        - deprecated
+        - event
+        - expected_failure
+        - "fmt::skip"
+        - legacy_entry_fun
+        - "lint::allow_unsafe_randomness"
+        - "lint::skip"
+        - native_interface
+        - randomness
+        - resource_group
+        - resource_group_member
+        - test
+        - test_only
+        - verify_only
+        - view
+      skip_attribute_checks: false
+      compiler_version: ~
+      language_version: ~
+      experiments:
+        - optimize=on
+dependencies:
+  - AptosFramework
+  - AptosStdlib
+  - AptosToken
+  - MoveStdlib

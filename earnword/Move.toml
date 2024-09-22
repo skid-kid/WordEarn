@@ -1,0 +1,21 @@
+[package]
+name = "MessageBoard"
+version = "1.0.0"
+authors = []
+
+[addresses]
+addrx = "0x75dc334abcc01d7bef7c4a3dbe35675656b129ad26356f550e097460c86d51ae"
+
+[dev-addresses]
+
+[dependencies.AptosFramework]
+git = "https://github.com/aptos-labs/aptos-core.git"
+rev = "mainnet"
+subdir = "aptos-move/framework/aptos-framework"
+
+[dependencies.AptosToken]
+git = "https://github.com/aptos-labs/aptos-core.git"
+rev = "mainnet"
+subdir = "aptos-move/framework/aptos-token"
+
+[dev-dependencies]
