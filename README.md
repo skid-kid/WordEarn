@@ -25,8 +25,3 @@
 - A crypto wallet (e.g., MetaMask, if supported)
 - Blockchain node access (specify if using a testnet/mainnet)
 
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/WordEarn.git
