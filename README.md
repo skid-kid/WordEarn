@@ -1,5 +1,5 @@
 # WordEarn - 1v1 Play-to-Earn Word Game
-(a play to earn 1v1 version of jklm.fun)
+##(a play to earn 1v1 version of jklm.fun)
 **WordEarn** is a 1v1 play-to-earn word game, inspired by popular games like JKLM. It combines wordplay with blockchain technology, allowing players to earn rewards based on their performance. The smart contract is powered by **Move**, and the frontend is developed using **Vite** and **React** to provide a seamless, fast, and interactive user experience.
 
 ## Features
